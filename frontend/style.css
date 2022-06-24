@@ -1,0 +1,56 @@
+body{
+    background-image: radial-gradient(circle,#8cd387,black);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    height: 100vh;
+}
+h1{
+    font-family: 'Press Start 2P', cursive;
+    color:aliceblue;
+    text-align: center;
+}
+.texto{
+    color: azure;
+    font-size: 30px;
+}
+button{
+    width: 100px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    color:crimson;
+    cursor: pointer;
+    border: 2px solid black;
+}
+button:hover{
+    background-color: rgb(244, 241, 232);
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 55px;
+}
+.imagen{
+    width: 200px;
+    height: 200px;
+}
+.subir{
+    grid-area: subir;
+    display: flex;
+    gap: 10px;
+}
+.imagenes{
+    display:flex;
+    grid-area: imagenes;
+    gap: 10px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 0.3fr;
+    grid-template-areas: 
+    "subir"
+    "imagenes";
+    column-gap: 1vw;
+    row-gap: 1vw;
+}
