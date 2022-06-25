@@ -26,7 +26,7 @@ subir.addEventListener('change', function() {
 
             const sourceImageData = context.getImageData(0, 0, canvasWidth, canvasHeight);
             const blankOutputImageData = context.createImageData(canvasWidth, canvasHeight);
-            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"sharpen");
+            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"invertir");
             context.putImageData(outputImageData, 0, 0);
             
             let nuevo_img = new Image();
@@ -52,6 +52,21 @@ function applyThreshold(sourceImageData,threshold = 127) {
     }
     return sourceImageData;
   };
+
+  function applyInvertir(sourceImageData) {
+    const src = sourceImageData.data;
+    
+    for (let i = 0; i < src.length; i ++) {
+      let r = src[i*4];
+      let g = src[i*4+1];
+      let b = src[i*4+2];
+      
+      src[i*4] = 255 - r;
+      src[i*4+1] = 255 - g;
+      src[i*4+2] = 255 - b; 
+    }
+    return sourceImageData;
+  };
   
 
   function applyFilter(sourceImageData, outputImageData, filter) {
@@ -59,6 +74,8 @@ function applyThreshold(sourceImageData,threshold = 127) {
       return sourceImageData;
     } else if (filter === "threshold") {
       return applyThreshold(sourceImageData);
+    } else if(filter ==="invertir"){
+      return applyInvertir(sourceImageData);
     } else if (filter === "sharpen") {
       return applyConvolution(sourceImageData, outputImageData, [
         0, -1, 0, 
