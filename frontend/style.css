@@ -14,7 +14,13 @@ h1{
     color: azure;
     font-size: 30px;
 }
+.cargar-b{
+    display:none;
+}
 .cargar{
+    display:inline-block;
+    padding-top: 5px;
+    text-align: center;
     width: 100px;
     border-radius: 10px;
     background-color: aliceblue;

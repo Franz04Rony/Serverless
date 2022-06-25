@@ -15,7 +15,7 @@ subir.addEventListener('change', function() {
 
             const sourceImageData = context.getImageData(0, 0, canvasWidth, canvasHeight);
             const blankOutputImageData = context.createImageData(canvasWidth, canvasHeight);
-            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"sharpen");
+            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"blur");
             context.putImageData(outputImageData, 0, 0);
             
             let nuevo_img = new Image();
