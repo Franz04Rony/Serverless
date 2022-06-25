@@ -9,11 +9,12 @@ h1{
     color:aliceblue;
     text-align: center;
 }
+
 .texto{
     color: azure;
     font-size: 30px;
 }
-button{
+.cargar{
     width: 100px;
     border-radius: 10px;
     background-color: aliceblue;
@@ -21,7 +22,7 @@ button{
     cursor: pointer;
     border: 2px solid black;
 }
-button:hover{
+.cargar:hover{
     background-color: rgb(244, 241, 232);
 }
 .container{
