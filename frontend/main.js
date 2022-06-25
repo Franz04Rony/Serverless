@@ -2,6 +2,7 @@ const subir = document.getElementById("subir");
 const original = document.getElementById("original");
 const canvas = document.getElementById("canvas");
 context = canvas.getContext('2d');
+let filtros = ["threshold","invertir","bgr","gray","blur"];
 
 descargar.addEventListener("click",()=>{
   let link = window.document.createElement( 'a' );
@@ -20,13 +21,16 @@ subir.addEventListener('change', function() {
         original.src = URL.createObjectURL(this.files[0]);
         
         original.onload = function(){
+            canvas.height = 200;
+            canvas.width = 200;
+            let rand = Math.floor(Math.random()* filtros.length);
             context.drawImage(original, 0, 0,200,200);
             const canvasWidth = 200;
             const canvasHeight = 200;
-
             const sourceImageData = context.getImageData(0, 0, canvasWidth, canvasHeight);
             const blankOutputImageData = context.createImageData(canvasWidth, canvasHeight);
-            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"bgr");
+            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,filtros[rand]);
+            console.log(filtros[rand]);
             context.putImageData(outputImageData, 0, 0);
             
             let nuevo_img = new Image();
@@ -41,12 +45,12 @@ function applyThreshold(sourceImageData,threshold = 127) {
     const src = sourceImageData.data;
     
     for (let i = 0; i < src.length; i += 4) {
-      const r = src[i];
-      const g = src[i+1];
-      const b = src[i+2];
+      let r = src[i];
+      let g = src[i+1];
+      let b = src[i+2];
       
       // thresholding the current value
-      const v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+      let v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
       
       src[i] = src[i+1] = src[i+2] = v  
     }
@@ -80,6 +84,21 @@ function applyThreshold(sourceImageData,threshold = 127) {
     }
     return sourceImageData;
   };
+
+  function applyGrayScale(sourceImageData) {
+    const src = sourceImageData.data;
+    for (let i = 0; i < src.length; i +=4) {
+      let r = src[i];
+      let g = src[i+1];
+      let b = src[i+2];
+      
+      let gray = (r+g+b)/3;
+      src[i] = gray;
+      src[i+1] = gray;
+      src[i+2] = gray; 
+    }
+    return sourceImageData;
+  };
   
 
   function applyFilter(sourceImageData, outputImageData, filter) {
@@ -91,6 +110,8 @@ function applyThreshold(sourceImageData,threshold = 127) {
       return applyInvertir(sourceImageData);
     } else if(filter ==="bgr"){
       return applyBGR(sourceImageData);
+    } else if(filter ==="gray"){
+      return applyGrayScale(sourceImageData);
     } else if (filter === "sharpen") {
       return applyConvolution(sourceImageData, outputImageData, [
         0, -1, 0, 
