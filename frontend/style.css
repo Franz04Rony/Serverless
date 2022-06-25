@@ -51,13 +51,32 @@ h1{
     grid-area: imagenes;
     gap: 10px;
 }
+.descargar{
+    grid-area: descargar;
+    text-align: center;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    color:crimson;
+    cursor: pointer;
+    border: 2px solid black;
+}
+.descargar:hover{
+    background-color: rgb(244, 241, 232);
+}
+.box-descargar{
+    display:flex;
+    flex-direction: row-reverse;
+}
 .grid{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.3fr 0.3fr;
     grid-template-areas: 
     "subir"
-    "imagenes";
+    "imagenes"
+    "descargar";
     column-gap: 1vw;
     row-gap: 1vw;
 }

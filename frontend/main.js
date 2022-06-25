@@ -3,6 +3,17 @@ const original = document.getElementById("original");
 const canvas = document.getElementById("canvas");
 context = canvas.getContext('2d');
 
+descargar.addEventListener("click",()=>{
+  let link = window.document.createElement( 'a' );
+  let url = canvas.toDataURL();
+  filename = 'fotoConEstilo.jpg';
+  link.setAttribute( 'href', url );
+                    link.setAttribute( 'download', filename );
+                    link.style.visibility = 'hidden';
+                    window.document.body.appendChild( link );
+                    link.click();
+                    window.document.body.removeChild( link );
+});
 
 subir.addEventListener('change', function() {
     if (this.files && this.files[0]) {
@@ -15,7 +26,7 @@ subir.addEventListener('change', function() {
 
             const sourceImageData = context.getImageData(0, 0, canvasWidth, canvasHeight);
             const blankOutputImageData = context.createImageData(canvasWidth, canvasHeight);
-            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"blur");
+            const outputImageData = applyFilter(sourceImageData,blankOutputImageData,"sharpen");
             context.putImageData(outputImageData, 0, 0);
             
             let nuevo_img = new Image();
