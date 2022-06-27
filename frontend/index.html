@@ -4,30 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Serverless</title>
 </head>
 <body>
-    <h1>Cambia el estilo de tu imagen</h1>
-    <div class="container">
-        <div class="grid">
-            <div class="subir">
-                <span class="texto">Sube una imagen: </span>
-                <label for="subir" class="cargar">Subir</label>
-                <input type="file" id="subir" class="cargar-b">
-                <!-- <button id="subir">Subir</button> -->
-            </div>   
-            <div class="imagenes">
-                <img src="" class="imagen" alt="" id="original">
-                <canvas id="canvas" width="200" height="200" alt="" class="canvas">
-            </div>
-            <div class="box-descargar">
-                <button class="descargar" id="descargar">Descargar</button>
+    <div class="modal-container" id="modal_container">
+        <div class="modal">
+            <span class="texto">ingresa tu nickname: </span>
+            <input type="text" class="input" id="input">
+            <button id="entrar" class="entrar">Entrar</button>
+        </div>
+    </div>
+    <div>
+        <h1>Cambia el estilo de tu imagen</h1>
+        <div class="container">
+            <div class="grid">
+                <div class="subir">
+                    <span class="texto" id="texto">Sube una imagen: </span>
+                    <label for="subir" class="cargar">Subir</label>
+                    <input type="file" id="subir" class="cargar-b">
+                    <!-- <button id="subir">Subir</button> -->
+                </div>   
+                <div class="imagenes">
+                    <img src="anya.jpg" class="imagen" alt="" id="original">
+                    <canvas id="canvas" width="200" height="200" alt="" class="canvas">
+                </div>
+                <div class="box-descargar">
+                    <button class="descargar" id="descargar">Descargar</button>
+                </div>
             </div>
         </div>
     </div>
+    
     
     
 </body>

@@ -1,9 +1,28 @@
 const subir = document.getElementById("subir");
 const original = document.getElementById("original");
+const modal_container = document.getElementById("modal_container");
+const entrar = document.getElementById("entrar");
+const input = document.getElementById("input");
 const canvas = document.getElementById("canvas");
 context = canvas.getContext('2d');
 let filtros = ["threshold","invertir","bgr","gray","blur"];
 
+modal_container.classList.add("show");
+
+entrar.addEventListener("click",()=>{
+  if(input.value !== ""){
+    modal_container.classList.remove("show");
+  }
+  document.getElementById("texto").textContent = "Hola "+input.value+ ", escoge una imagen"
+})
+document.addEventListener("keydown", function(e){
+  if(e.key == "Enter"){
+      if(input.value !== ""){
+        modal_container.classList.remove("show");
+      }
+      document.getElementById("texto").textContent = "Hola "+input.value+ ", escoge una imagen"
+    }
+});
 descargar.addEventListener("click",()=>{
   let link = window.document.createElement( 'a' );
   let url = canvas.toDataURL();
