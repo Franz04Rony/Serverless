@@ -6,22 +6,44 @@ const input = document.getElementById("input");
 const canvas = document.getElementById("canvas");
 context = canvas.getContext('2d');
 let filtros = ["threshold","invertir","bgr","gray","blur"];
+let mirespuesta;
+let param="name";
 
 modal_container.classList.add("show");
 
 entrar.addEventListener("click",()=>{
-  if(input.value !== ""){
-    modal_container.classList.remove("show");
-  }
+  let valor=input.value;
+  console.log(valor)
+  let endpoint=`https://service.us-east.apiconnect.ibmcloud.com/gws/apigateway/api/dd9a4e5b3a509e5ca3da56b8cc80117941b5b9ef1377ea5a2b145569ab2a862b/hello/world?${param}=${valor}`
+  fetch(endpoint)
+  .then(request=>request.text())
+  .then(data=>{
+    console.log(JSON.parse(data).payload)
+    mirespuesta=JSON.parse(data).payload
+    if(mirespuesta !== ""){
+      modal_container.classList.remove("show");
+    }
+  })
+  
   document.getElementById("texto").textContent = "Hola "+input.value+ ", escoge una imagen"
 })
 document.addEventListener("keydown", function(e){
   if(e.key == "Enter"){
-      if(input.value !== ""){
+    let valor=input.value;
+    console.log(valor)
+    let endpoint=`https://service.us-east.apiconnect.ibmcloud.com/gws/apigateway/api/dd9a4e5b3a509e5ca3da56b8cc80117941b5b9ef1377ea5a2b145569ab2a862b/hello/world?${param}=${valor}`
+    fetch(endpoint)
+    .then(request=>request.text())
+    .then(data=>{
+      console.log(JSON.parse(data).payload)
+      mirespuesta=JSON.parse(data).payload
+      if(mirespuesta !== ""){
         modal_container.classList.remove("show");
       }
-      document.getElementById("texto").textContent = "Hola "+input.value+ ", escoge una imagen"
+    })
+      document.getElementById("texto").textContent = "Hola "+input.value+ ", escoge una imagen" 
     }
+
 });
 descargar.addEventListener("click",()=>{
   let link = window.document.createElement( 'a' );
